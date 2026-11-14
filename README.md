@@ -1,7 +1,7 @@
 <!--
 -------------------------------
 Author: Chirag Khanna
-Date: 14-11-2026
+Date: 15-11-2026
 -------------------------------
 -->
 
@@ -79,8 +79,8 @@ Side view, facing right:
 
 ## Hardware (bill of materials)
 
-Source of truth: [`biped/parts.py`](biped/parts.py) (sizes, masses, quantities).
-Print the list with `python biped/parts.py`. Entries marked *estimate* still need
+Source of truth: [`src/biped/parts.py`](src/biped/parts.py) (sizes, masses, quantities).
+Print the list with `python -m biped.parts`. Entries marked *estimate* still need
 to be weighed or measured.
 
 | Part | Qty | Notes |
@@ -100,16 +100,17 @@ to be weighed or measured.
 ## Repository layout
 
 ```
-biped/                    Python package (pure Python, also importable by FreeCAD)
+src/biped/                Python package (pure Python, also importable by FreeCAD)
   legolas_leg.py            leg kinematics + rod-loop closure
   parts.py                  bought parts: size, mass, quantity
 tests/
   test_legolas_leg.py       checks for the leg kinematics
 tools/
-  make_parts_library.py     builds cad/parts_library.FCStd from biped/parts.py
+  make_parts_library.py     builds cad/parts_library.FCStd from src/biped/parts.py
   fc_run.sh                 runs a FreeCAD script in a fresh GUI and prints errors
 cad/vendor/               third-party CAD (servo STEP), see cad/vendor/README.md
-environment.yml           conda environment
+environment.yml           conda environment (sim, control, RL tools)
+pyproject.toml            makes `biped` installable: pip install -e .
 ```
 
 ## Setup on your computer
@@ -126,17 +127,21 @@ cd biped_robot
 ```bash
 conda env create -f environment.yml
 conda activate bipedrobot
+pip install -e ".[test]"        # installs the `biped` package from src/ (editable) + pytest
 ```
+> Using ROS 2 too? Its setup script adds ROS Python packages to `PYTHONPATH`, which
+> breaks `pytest`. The conda env clears `PYTHONPATH` on activate; in other shells
+> run `unset PYTHONPATH` first.
 
 **3. Run the tests**
 ```bash
-python tests/test_legolas_leg.py        # or: python -m pytest tests/
+python -m pytest                         # or: python tests/test_legolas_leg.py
 ```
 You should see 10 `ok` lines.
 
 **4. Print the parts list and mass budget**
 ```bash
-python biped/parts.py
+python -m biped.parts
 ```
 
 **5. (Optional) CAD with FreeCAD**
@@ -153,12 +158,12 @@ python biped/parts.py
 ## Build your own: what to change
 
 - **Different leg lengths or rods:** edit the constants at the top of
-  [`biped/legolas_leg.py`](biped/legolas_leg.py), then run the tests. If
+  [`src/biped/legolas_leg.py`](src/biped/legolas_leg.py), then run the tests. If
   `leg_points()` returns `None` at your poses, a rod can't reach: change the rod
   length or lever arm.
-- **Different parts:** edit [`biped/parts.py`](biped/parts.py) (size, mass,
+- **Different parts:** edit [`src/biped/parts.py`](src/biped/parts.py) (size, mass,
   quantity) and rebuild the parts library.
-- **Standing pose:** `HOME` in `biped/legolas_leg.py`. Keep the knee well inside its
+- **Standing pose:** `HOME` in `src/biped/legolas_leg.py`. Keep the knee well inside its
   reachable range so the rod loop never gets close to its limit.
 
 ## Roadmap
@@ -178,7 +183,7 @@ python biped/parts.py
 - **Legolas** by daviddoo02: robot design ([MIT](https://github.com/daviddoo02/Legolas-an-open-source-biped)).
   Leg geometry from **Legolas_Controller** by Daniel Kutch
   ([MIT](https://github.com/daviddoo02/Legolas_Controller)), re-written in
-  `biped/legolas_leg.py`.
+  `src/biped/legolas_leg.py`.
 - **Cassie** by Agility Robotics, and Z. Xie et al., *Feedback Control for Cassie
   with Deep Reinforcement Learning*, IROS 2018: the leg concept.
 - **STS3215 STEP model** from [SO-ARM100](https://github.com/TheRobotStudio/SO-ARM100)

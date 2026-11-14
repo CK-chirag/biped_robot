@@ -15,13 +15,11 @@ What is checked:
     angle (rod 1 rides on the thigh), the knee range 70-125 deg is reachable,
     and the HOME pose stands level with the toe joint under the hip
 
-Run:  python tests/test_legolas_leg.py      (or: python -m pytest tests/)"""
-import sys
+Run (after `pip install -e .`):  python -m pytest tests/
+      or:  python tests/test_legolas_leg.py"""
 from math import isclose, sqrt, radians
-from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from biped import legolas_leg as L  # noqa: E402
+from biped import legolas_leg as L
 
 
 def close(p, q, tol=1e-6):

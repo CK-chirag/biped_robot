@@ -1,0 +1,29 @@
+# -------------------------------
+# Author: Chirag Khanna
+# Date: 15-11-2026
+# -------------------------------
+# Packaging for the `biped` Python package (src layout).
+# Install for development from the repo root:   pip install -e .
+# The code in src/biped/ is pure Python (math only), so it has no required
+# dependencies; the simulation / RL tools come from environment.yml.
+
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "biped-robot"
+version = "0.1.0"
+description = "Cassie-style (Legolas-based) biped robot: leg kinematics, parts, sim and RL"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Chirag Khanna" }]
+
+[project.optional-dependencies]
+test = ["pytest"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
