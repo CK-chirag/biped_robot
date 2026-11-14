@@ -1,0 +1,26 @@
+# -------------------------------
+# Author: Chirag Khanna
+# Date: 14-11-2026
+# -------------------------------
+# Files that never go to GitHub: local assistant notes, editor settings,
+# Python caches, FreeCAD backups and generated build outputs.
+
+# local only (never public)
+CLAUDE.md
+.claude/
+.vscode/
+
+# python
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+
+# FreeCAD backups and generated files (rebuild them with tools/)
+*.FCBak
+*.FCStd1
+cad/parts_library.FCStd
+
+# training / logs
+runs/
+logs/

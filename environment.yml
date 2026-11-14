@@ -1,0 +1,33 @@
+# -------------------------------
+# Author: Chirag Khanna
+# Date: 14-11-2026
+# -------------------------------
+# Conda environment for the biped robot code (simulation, control, RL).
+# Create:   conda env create -f environment.yml
+# Use:      conda activate bipedrobot
+# PYTHONPATH is cleared on activate so a sourced ROS 2 install can't leak its
+# Python packages into this environment.
+name: bipedrobot
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python=3.11
+  - pip
+  - numpy
+  - scipy
+  - matplotlib
+  - pyyaml
+  - pytest
+  - pip:
+      - mujoco
+      - gymnasium
+      - stable-baselines3
+      - tensorboard
+      - control
+      - cyclonedds
+      - torch
+      - osqp
+      - casadi
+variables:
+  PYTHONPATH: ""   # keep ROS 2 Humble's python3.10 paths out of this env
