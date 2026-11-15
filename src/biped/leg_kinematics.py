@@ -4,7 +4,11 @@ Author: Chirag Khanna
 Date: 14-11-2026
 -------------------------------
 
-Planar (side-view) kinematics of one leg of our Legolas-style biped.
+Planar (side-view) kinematics of one leg of our Cassie-style biped.
+
+Reference only: the leg proportions and rod geometry are taken from Legolas
+(open-source biped, MIT licence) and adapted to our own servos; the robot's
+mechanical design is our own.
 
 What this file does: given the servo angles of one leg, it works out where
 every joint, rod and lever of that leg is in the side view. Two of the leg's

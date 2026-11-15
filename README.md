@@ -100,10 +100,10 @@ to be weighed or measured.
 
 ```
 src/biped/                Python package (pure Python, also importable by FreeCAD)
-  legolas_leg.py            leg kinematics + rod-loop closure
+  leg_kinematics.py         leg kinematics + rod-loop closure
   parts.py                  bought parts: size, mass, quantity
 tests/
-  test_legolas_leg.py       checks for the leg kinematics
+  test_leg_kinematics.py    checks for the leg kinematics
 tools/
   make_parts_library.py     builds cad/parts_library.FCStd from src/biped/parts.py
   fc_run.sh                 runs a FreeCAD script in a fresh GUI and prints errors
@@ -134,7 +134,7 @@ pip install -e ".[test]"        # installs the `biped` package from src/ (editab
 
 **3. Run the tests**
 ```bash
-python -m pytest                         # or: python tests/test_legolas_leg.py
+python -m pytest                         # or: python tests/test_leg_kinematics.py
 ```
 You should see 10 `ok` lines.
 
@@ -157,12 +157,12 @@ python -m biped.parts
 ## Build your own: what to change
 
 - **Different leg lengths or rods:** edit the constants at the top of
-  [`src/biped/legolas_leg.py`](src/biped/legolas_leg.py), then run the tests. If
+  [`src/biped/leg_kinematics.py`](src/biped/leg_kinematics.py), then run the tests. If
   `leg_points()` returns `None` at your poses, a rod can't reach: change the rod
   length or lever arm.
 - **Different parts:** edit [`src/biped/parts.py`](src/biped/parts.py) (size, mass,
   quantity) and rebuild the parts library.
-- **Standing pose:** `HOME` in `src/biped/legolas_leg.py`. Keep the knee well inside its
+- **Standing pose:** `HOME` in `src/biped/leg_kinematics.py`. Keep the knee well inside its
   reachable range so the rod loop never gets close to its limit.
 
 ## Credits and licences
@@ -170,7 +170,7 @@ python -m biped.parts
 - **Legolas** by daviddoo02: robot design ([MIT](https://github.com/daviddoo02/Legolas-an-open-source-biped)).
   Leg geometry from **Legolas_Controller** by Daniel Kutch
   ([MIT](https://github.com/daviddoo02/Legolas_Controller)), re-written in
-  `src/biped/legolas_leg.py`.
+  `src/biped/leg_kinematics.py`.
 - **Cassie** by Agility Robotics, and Z. Xie et al., *Feedback Control for Cassie
   with Deep Reinforcement Learning*, IROS 2018: the leg concept.
 - **STS3215 STEP model** from [SO-ARM100](https://github.com/TheRobotStudio/SO-ARM100)

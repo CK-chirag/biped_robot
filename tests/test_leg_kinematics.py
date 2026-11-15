@@ -4,7 +4,7 @@ Author: Chirag Khanna
 Date: 14-11-2026
 -------------------------------
 
-Tests for biped/legolas_leg.py.
+Tests for biped/leg_kinematics.py.
 
 What is checked:
   * circle_intersection(): known answers (unit circles, 3-4-5 triangle), the
@@ -16,10 +16,10 @@ What is checked:
     and the HOME pose stands level with the toe joint under the hip
 
 Run (after `pip install -e .`):  python -m pytest tests/
-      or:  python tests/test_legolas_leg.py"""
+      or:  python tests/test_leg_kinematics.py"""
 from math import isclose, sqrt, radians
 
-from biped import legolas_leg as L
+from biped import leg_kinematics as L
 
 
 def close(p, q, tol=1e-6):
