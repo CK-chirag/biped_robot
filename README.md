@@ -11,8 +11,7 @@ A small, open-source, **Cassie-style bipedal robot** (legs and pelvis only), bui
 to learn underactuated control and **reinforcement learning (RL)**: train a walking
 policy in **MuJoCo** and run it on a **Jetson Nano**.
 
-The leg design is based on [Legolas](https://github.com/daviddoo02/Legolas-an-open-source-biped)
-(MIT), adapted to serial-bus servos, a Jetson Nano and an LSM6DSV16X IMU.
+The leg design is based on Cassie by Agility Robotics, adapted to serial-bus servos, a Jetson Nano.
 
 > **Status: early development.** Leg kinematics and the parts library are done.
 > CAD, the MuJoCo model, controllers and RL training are being added. See the
@@ -165,18 +164,6 @@ python -m biped.parts
   quantity) and rebuild the parts library.
 - **Standing pose:** `HOME` in `src/biped/legolas_leg.py`. Keep the knee well inside its
   reachable range so the rod loop never gets close to its limit.
-
-## Roadmap
-
-- [x] Leg kinematics with rod-loop closure
-- [x] Parts library (sizes, masses)
-- [ ] Knee torque check (virtual work) against the STS3250 limits
-- [ ] Full FreeCAD model: pelvis, hip brackets, thigh, shin, tarsus, foot, rods
-- [ ] URDF export → MuJoCo model with closed rod loops and servo models
-- [ ] LQR / ZMP balance in simulation
-- [ ] RL walking policy (PPO, domain randomization)
-- [ ] ONNX export and Jetson Nano runtime (servo bus + IMU)
-- [ ] Build and test the real robot
 
 ## Credits and licences
 
