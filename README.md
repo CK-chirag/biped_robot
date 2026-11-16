@@ -14,8 +14,7 @@ policy in **MuJoCo** and run it on a **Jetson Nano**.
 The leg design is based on Cassie by Agility Robotics, adapted to serial-bus servos, a Jetson Nano.
 
 > **Status: early development.** Leg kinematics and the parts library are done.
-> CAD, the MuJoCo model, controllers and RL training are being added. See the
-> [Roadmap](#roadmap).
+> CAD, the MuJoCo model, controllers and RL training are being added.
 
 ---
 
@@ -27,8 +26,7 @@ The leg design is based on Cassie by Agility Robotics, adapted to serial-bus ser
 4. [Repository layout](#repository-layout)
 5. [Setup on your computer](#setup-on-your-computer)
 6. [Build your own: what to change](#build-your-own-what-to-change)
-7. [Roadmap](#roadmap)
-8. [Credits and licences](#credits-and-licences)
+7. [Credits and licences](#credits-and-licences)
 
 ---
 
